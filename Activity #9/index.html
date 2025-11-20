@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap" role="main">
+    <h1>Dynamic To-Do List</h1>
+    <p class="lead">Add tasks, click a task to toggle completed, and delete tasks. Press Enter to add.</p>
+
+    <form class="add" id="taskForm" aria-label="Add task">
+      <input id="taskInput" name="text" autocomplete="off" placeholder="What needs to be done?" aria-label="New task name" />
+      <button class="add-btn" type="submit">Add</button>
+    </form>
+
+    <section aria-live="polite">
+      <ul id="todoList" class="todo" aria-label="To-do list"></ul>
+      <div id="empty" class="empty" hidden>
+        You're all caught up — add your first task!
+      </div>
+    </section>
+
+    <footer class="info">
+      <div><span id="count">0</span> task(s)</div>
+      <div class="small">Tasks are saved in your browser (localStorage).</div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
