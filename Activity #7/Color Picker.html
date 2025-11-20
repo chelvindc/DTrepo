@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker and Image Replacer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 40px;
+        }
+        .container {
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            display: inline-block;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="color"] {
+            width: 100px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 20px;
+            width: 200px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>🎨 Color Picker </h1>
+
+  <div class="control-box">
+    <p>Select a color:</p>
+    <input type="color" id="colorPicker"><br><br>
+
+    <button onclick="changeBackground()">Change Background Color</button>
+    <button onclick="changeParagraphColor()">Change Paragraph Color</button>
+    <button onclick="changeDivTextColor()">Change Text Inside &lt;div&gt; Color</button>
+    <br><br>
+
+    <label for="imageUpload"><strong>Replace Image:</strong></label><br>
+    <input type="file" id="imageUpload" accept="image/*">
+  </div>
+
+  <!-- The main div that can be edited and styled -->
+  <div id="contentDiv" contenteditable="true">
+    <p>You can type or edit text directly inside this div!</p>
+    <p>Try changing my color using the color picker above.</p>
+    <img id="mainImage" src="https://via.placeholder.com/300x200" alt="Default Image">
+  </div>
+
+  <script>
+    function changeBackground() {
+      const color = document.getElementById('colorPicker').value;
+      document.body.style.backgroundColor = color;
+    }
+
+    function changeParagraphColor() {
+      const color = document.getElementById('colorPicker').value;
+      document.querySelectorAll('p').forEach(p => p.style.color = color);
+    }
+
+    function changeDivTextColor() {
+      const color = document.getElementById('colorPicker').value;
+      document.getElementById('contentDiv').style.color = color;
+    }
+
+    // Replace image
+    document.getElementById('imageUpload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const imageURL = URL.createObjectURL(file);
+        document.getElementById('mainImage').src = imageURL;
+      }
+    });
+  </script>
+
+</body>
+</html>
